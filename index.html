@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> 
+    <title>Pagina con Python</title>
+</head>
+<body>
+        
+    <div class="top-calc">
+        <h1>Calcolatrice Derivate</h1>
+    </div>
+
+
+
+    <div id="calculator">
+
+        <!-- Pulsante per calcolare -->
+        <div id="calculate-container">
+          <button id="calculate-button">Calcola</button>
+          <button id="calculate-button">Cancella</button>
+         </div>
+
+
+
+        <!-- Campo input per visualizzare il risultato -->
+        <div id="display-container">
+          <input type="text" id="display" placeholder="EQUAZIONE:">
+        </div>
+      
+        <!-- Tastiera posizionata in basso -->
+        <div id="keyboard-container">
+          <!-- Pulsanti per selezionare i comparti -->
+          <div id="tabs">
+            <button data-section="basic" class="tab-button active">Base</button>
+            <button data-section="trigonometry" class="tab-button">Trigo</button>
+            <button data-section="logarithms" class="tab-button">Log</button>
+            <button data-section="advanced" class="tab-button">Altre</button>
+          </div>
+      
+          <!-- Sezioni della tastiera -->
+          <div id="keyboard">
+            <!-- Sezione Base -->
+            <div class="section" id="basic" style="display: block;">
+              <!-- Numeri -->
+              <div id="numbers">
+                <button data-value="7">7</button>
+                <button data-value="8">8</button>
+                <button data-value="9">9</button>
+                <button data-value="4">4</button>
+                <button data-value="5">5</button>
+                <button data-value="6">6</button>
+                <button data-value="1">1</button>
+                <button data-value="2">2</button>
+                <button data-value="3">3</button>
+                <button data-value="0">0</button>
+                <button data-value=".">.</button>
+                <button class="clear" data-value="C">C</button>
+              </div>
+              <!-- Operazioni di base -->
+              <div id="basic-operations">
+                <button data-value="+">+</button>
+                <button data-value="-">-</button>
+                <button data-value="*">*</button>
+                <button data-value="/">/</button>
+              </div>
+            </div>
+      
+            <!-- Sezione Trigonometria -->
+            <div class="section" id="trigonometry" style="display: none;">
+              <button data-value="sin(">sin</button>
+              <button data-value="cos(">cos</button>
+              <button data-value="tan(">tan</button>
+              <button data-value="cot(">cot</button>
+            </div>
+      
+            <!-- Sezione Logaritmi -->
+            <div class="section" id="logarithms" style="display: none;">
+              <button data-value="log(">log</button>
+              <button data-value="ln(">ln</button>
+              <button data-value="e^">e^</button>
+              <button data-value="10^">10^</button>
+            </div>
+      
+            <!-- Sezione Avanzata -->
+            <div class="section" id="advanced" style="display: none;">
+              <button data-value="√(">√</button>
+              <button data-value="^2">x²</button>
+              <button data-value="^">xʸ</button>
+              <button data-value="|">|x|</button> </div>
+            
+              <!-- Parentesi (aggiunti sotto gli altri pulsanti) -->
+             <div id="parentheses">
+              <button data-value="(">(</button>
+              <button data-value=")">)</button> 
+              <button data-value="[">[</button>
+              <button data-value="]">]</button>
+            </div>
+           </div>
+          </div>
+        </div>
+      </div>
+      
+      
+
+      <script>
+        // Seleziona tutti i tab-button e le sezioni
+const tabButtons = document.querySelectorAll(".tab-button");
+const sections = document.querySelectorAll(".section");
+const display = document.getElementById("display");
+
+// Aggiungi l'evento click ai pulsanti dei tab
+tabButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // Rimuovi la classe 'active' da tutti i pulsanti
+    tabButtons.forEach((btn) => btn.classList.remove("active"));
+    // Aggiungi la classe 'active' al pulsante cliccato
+    button.classList.add("active");
+
+    // Nascondi tutte le sezioni
+    sections.forEach((section) => {
+      section.style.display = "none";
+    });
+
+    // Mostra la sezione selezionata
+    const sectionToShow = document.getElementById(button.dataset.section);
+    sectionToShow.style.display = "flex";
+  });
+});
+
+// Aggiungi l'evento click ai pulsanti della tastiera
+const buttons = document.querySelectorAll("#keyboard button");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // Controlla se c'è un errore nel display e lo rimuove
+    if (display.value === "Errore") {
+      display.value = "";  // Rimuove l'errore se presente
+    }
+
+    // Ottieni il valore del pulsante
+    const value = button.dataset.value;
+    if (value === "C") {
+      // Cancella il campo di input
+      display.value = "";
+    } else if (value) {
+      // Aggiungi il valore al campo di input
+      display.value += value;
+    }
+  });
+});
+
+// Funzionalità del pulsante "Calcola"
+const calculateButton = document.getElementById("calculate-button");
+
+// Evento click sul pulsante "Calcola"
+calculateButton.addEventListener("click", () => {
+  try {
+    // Sostituire le funzioni trigonometriche in modo che utilizzino la Math di JavaScript
+    let expression = display.value;
+
+    // Gestire le funzioni trigonometriche
+    expression = expression.replace(/sin\(/g, "Math.sin(");
+    expression = expression.replace(/cos\(/g, "Math.cos(");
+    expression = expression.replace(/tan\(/g, "Math.tan(");
+    expression = expression.replace(/cot\(/g, "1/Math.tan(");  // cot(x) = 1/tan(x)
+
+    // Logaritmi
+    expression = expression.replace(/log\(/g, "Math.log10(");  // log(x) base 10
+    expression = expression.replace(/ln\(/g, "Math.log(");     // ln(x) base e
+
+    // Radice quadrata
+    expression = expression.replace(/√\(/g, "Math.sqrt(");
+
+    // Potenze
+    expression = expression.replace(/\^2/g, "**2"); // x²
+    expression = expression.replace(/\^/g, "**");  // xʸ (generale)
+
+    // Valutare l'espressione con eval
+    const result = eval(expression);
+
+    // Mostra il risultato nel campo di input
+    display.value = result;
+  } catch (error) {
+    // Gestisci eventuali errori di calcolo
+    display.value = "Errore";
+  }
+});
+
+      </script>
+    
+</body>
+</html>

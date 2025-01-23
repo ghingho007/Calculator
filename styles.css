@@ -1,0 +1,247 @@
+body{
+    background: linear-gradient(90deg, #E1DADA 0%, #BDCAD9  100%);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.top-calc{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 15em;
+    padding: 2em;
+    margin-top: 5px;
+    background: linear-gradient(159deg, rgba(0,51,102,1) 0%, rgba(15,82,186,1) 100%);
+}
+
+.top-calc h1{
+    font-family: sans-serif;
+    font-size: 1.2em;
+    font-weight: 800;
+    color: white;
+}
+
+
+#display-container{
+    align-items: center;
+    justify-content: center;
+    width: 19em;
+    height: 9em;
+    margin-top: 1.2em;
+}
+
+#display-container input{
+    text-align: center;
+    width: 97.5%;
+    height: 97.5%;
+}
+
+#display-container input::placeholder{
+    font-family: sans-serif;
+    font-size: 1.3em;
+    opacity: 0.7;
+    color: black;
+    text-transform: uppercase;
+}
+
+#calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background: linear-gradient(90deg, #E1DADA 0%, #BDCAD9  100%);
+  }
+  
+  #display-container {
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(90deg, #E1DADA 0%, #BDCAD9  100%);
+  }
+  
+  #display {
+    width: 95%;
+    height: 50px;
+    font-size: 30px;
+    font-family: sans-serif;
+    border: 4px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    background: linear-gradient(90deg, #E1DADA 0%, #BDCAD9  100%);
+  }
+  
+  /* Tastiera */
+  #keyboard-container {
+    background-color: #f9f9f9;
+    padding: 10px;
+    background: linear-gradient(90deg, #E1DADA 0%, #BDCAD9  100%);
+  }
+  
+  #tabs {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 15px;
+    font-family: sans-serif;
+    font-size: 1px;
+  }
+
+  #tabs button:hover{
+    background-color: coral;
+  }
+
+  #tabs button:active{
+    background-color: coral;
+  }
+  
+  .tab-button {
+    background-color: #e6e6e6;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .tab-button.active {
+    background-color: #ccc;
+    font-weight: bold;
+  }
+  
+  #keyboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Sezione Base */
+  #basic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #numbers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    margin-left: 10px;
+  }
+  
+  #basic-operations {
+    display: flex;
+    gap: 10px;
+  }
+  
+  button {
+    width: 70px;
+    height: 50px;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: 800;
+    margin-top: 20px;
+    background-color: #f0f0f0;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: coral;
+  }
+  
+  button:active {
+    background-color: coral;
+  }
+  
+  /* Sezioni Nascondibili */
+  .section {
+    display: none;
+  }
+  
+  .section #basic {
+    display: flex;
+  }
+  /* Pulsante Calcola */
+#calculate-container {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+  }
+  
+  #calculate-button {
+    background: linear-gradient(159deg, rgba(0,51,102,1) 0%, rgba(15,82,186,1) 100%);
+    color: white;
+    border: none;
+    width: 10em;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  #calculate-button:hover {
+    background-color: coral;
+  }
+  
+  #calculate-button:active {
+    background-color: coral;
+  }
+  
+
+
+  .clear{
+    background: red;
+    font-weight: 800;
+  }
+
+  .clear:hover{
+    background: red;
+  }
+
+/* Sezione per i pulsanti delle parentesi */
+#parentheses-trigo,
+#parentheses-log,
+#parentheses-advanced {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;  /* Distanza sopra per separare dalla riga precedente */
+  width: 100%;
+}
+
+/* Pulsanti nelle parentesi */
+#parentheses-trigo button,
+#parentheses-log button,
+#parentheses-advanced button {
+  width: 48%;  /* Impostiamo una larghezza inferiore per ogni pulsante */
+  height: 50px;
+  font-size: 18px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 5px;  /* Spaziatura tra i pulsanti */
+}
+
+/* Hover e active per i pulsanti */
+#parentheses-trigo button:hover,
+#parentheses-log button:hover,
+#parentheses-advanced button:hover {
+  background-color: #e6e6e6;
+}
+
+#parentheses-trigo button:active,
+#parentheses-log button:active,
+#parentheses-advanced button:active {
+  background-color: #dcdcdc;
+}
